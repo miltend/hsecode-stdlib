@@ -1,7 +1,7 @@
 package math
 
 func NthPrime(n int) int {
-	if n < 0 {
+	if n <= 0 {
 		panic("Panicking")
 	}
 	const maxSize = 1000005
