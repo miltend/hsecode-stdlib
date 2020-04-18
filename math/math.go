@@ -2,7 +2,7 @@ package math
 
 func NthPrime(n int) int {
 	if n < 0 {
-		panic("F")
+		panic("Panicking")
 	}
 	const maxSize = 1000005
 	primes := map[int]int{}
