@@ -4,7 +4,7 @@ func NthPrime(n int) int {
 	if n <= 0 {
 		panic("Panicking")
 	}
-	const maxSize = 1000005
+	const maxSize = 3500000
 	primes := map[int]int{}
 	isPrime := map[int]bool{}
 	for i := 1; i < maxSize; i++ {
