@@ -23,12 +23,12 @@ func New(n, m int) *Matrix {
 		m,
 		matrrr,
 	}
-	for i := 0; i < mtrx.Rows; i++ {
-		row := make([]ValueType, mtrx.Cols)
+	for i := 0; i < n; i++ {
+		row := make([]ValueType, m)
 		mtrx.matr = append(mtrx.matr, row)
 	}
-	smth := &mtrx
-	return smth
+	//smth := &mtrx
+	return &mtrx
 }
 
 func (M *Matrix) Set(i, j int, v ValueType) {
