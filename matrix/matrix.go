@@ -24,8 +24,8 @@ func New(n, m int) *Matrix {
 		matrrr,
 	}
 	for i := 0; i < n; i++ {
-		row := make([]ValueType, m)
-		mtrx.matr = append(mtrx.matr, row)
+		//row := make([]ValueType, m)
+		mtrx.matr = append(mtrx.matr, make([]ValueType, m))
 	}
 	//smth := &mtrx
 	return &mtrx
