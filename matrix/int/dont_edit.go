@@ -12,6 +12,9 @@ type Matrix struct {
 }
 
 func New(n, m int) *Matrix {
+	if n <= 0 || m <= 0 {
+		panic("rows and columns must be positive")
+	}
 	var matrrr [][]int
 	mtrx := Matrix{
 		n,
@@ -27,15 +30,21 @@ func New(n, m int) *Matrix {
 }
 
 func (M *Matrix) Set(i, j int, v int) {
-	if i >= M.Rows || i < 0 || j >= M.Cols || j < 0 {
-		panic("indice is out of range")
+	if i >= M.Rows || i < 0 {
+		panic("row indice is out of range")
+	}
+	if j >= M.Cols || j < 0 {
+		panic("column indice is out of range")
 	}
 	M.matr[i][j] = v
 }
 
 func (M *Matrix) Get(i, j int) int {
-	if i >= M.Rows || i < 0 || j >= M.Cols || j < 0 {
-		panic("indice is out of range")
+	if i >= M.Rows || i < 0 {
+		panic("row indice is out of range")
+	}
+	if j >= M.Cols || j < 0 {
+		panic("column indice is out of range")
 	}
 	return M.matr[i][j]
 }
