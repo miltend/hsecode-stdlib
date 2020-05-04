@@ -5,10 +5,9 @@
 package matrix
 
 type Matrix struct {
+	matr [][]int
 	Rows int // number of rows
 	Cols int // number of columns
-	// contains filtered or unexported fields
-	matr [][]int
 }
 
 func New(n, m int) *Matrix {
@@ -16,39 +15,28 @@ func New(n, m int) *Matrix {
 		panic("rows and columns must be positive")
 	}
 	var matrrr [][]int
-	//mtrx := Matrix{
-	//	n,
-	//	m,
-	//	matrrr,
-	//}
-	var mtrx Matrix
-	mtrx.Rows = n
-	mtrx.Cols = m
-	mtrx.matr = matrrr
+	mtrx := Matrix{
+		matrrr,
+		n,
+		m,
+	}
 	for i := 0; i < n; i++ {
 		row := make([]int, m)
 		mtrx.matr = append(mtrx.matr, row)
 	}
-	//smth := &mtrx
 	return &mtrx
 }
 
-func (M *Matrix) Set(i, j int, v int) {
-	if i >= M.Rows || i < 0 {
-		panic("row indice is out of range")
-	}
-	if j >= M.Cols || j < 0 {
-		panic("column indice is out of range")
-	}
-	M.matr[i][j] = v
-}
-
 func (M *Matrix) Get(i, j int) int {
-	if i >= M.Rows || i < 0 {
-		panic("row indice is out of range")
-	}
-	if j >= M.Cols || j < 0 {
-		panic("column indice is out of range")
+	if i >= M.Rows || i < 0 || j >= M.Cols || j < 0 {
+		panic("index is out of range")
 	}
 	return M.matr[i][j]
+}
+
+func (M *Matrix) Set(i, j int, v int) {
+	if i >= M.Rows || i < 0 || j >= M.Cols || j < 0 {
+		panic("index is out of range")
+	}
+	M.matr[i][j] = v
 }
