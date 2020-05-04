@@ -18,14 +18,18 @@ func New(n, m int) *Matrix {
 		panic("rows and columns must be positive")
 	}
 	var matrrr [][]ValueType
-	mtrx := Matrix{
-		n,
-		m,
-		matrrr,
-	}
+	//mtrx := Matrix{
+	//	n,
+	//	m,
+	//	matrrr,
+	//}
+	var mtrx Matrix
+	mtrx.Rows = n
+	mtrx.Cols = m
+	mtrx.matr = matrrr
 	for i := 0; i < n; i++ {
-		//row := make([]ValueType, m)
-		mtrx.matr = append(mtrx.matr, make([]ValueType, m))
+		row := make([]ValueType, m)
+		mtrx.matr = append(mtrx.matr, row)
 	}
 	//smth := &mtrx
 	return &mtrx
