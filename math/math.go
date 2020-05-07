@@ -2,10 +2,6 @@ package math
 
 //package main
 
-import (
-	"math"
-)
-
 func NthPrime(n int) int {
 
 	if n <= 0 {
@@ -21,7 +17,8 @@ func NthPrime(n int) int {
 			673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811}
 		return firstPrimes[n-1]
 	}
-	var maxSize = int(math.Round(math.Pow(float64(n), 1.4)))
+	//var maxSize = int(math.Round(math.Pow(float64(n), 1.36)))
+	const maxSize = 300000
 	isPrime := make([]bool, maxSize)
 	var primes []int
 	for i := 2; i < maxSize; i++ {
