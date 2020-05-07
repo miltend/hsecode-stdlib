@@ -1,5 +1,5 @@
 // math/math_test.go:
-package main_test
+package math_test
 
 import (
 	math "hsecode.com/stdlib/math"
