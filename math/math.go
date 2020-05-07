@@ -19,7 +19,7 @@ func NthPrime(n int) int {
 		return firstPrimes[n-1]
 
 	case n <= 6000:
-		var maxSize = int(math.Round(math.Pow(float64(n), 1.36)))
+		var maxSize = int(math.Ceil(float64(n) * (math.Log(float64(n)) + math.Log(math.Log(float64(n))))))
 		isPrime := make([]bool, maxSize)
 		var primes []int
 		for i := 2; i < maxSize; i++ {
