@@ -1,8 +1,9 @@
-package math
+//package math
 
-//package main
+package main
 
 import "math"
+import "fmt"
 
 func NthPrime(n int) int {
 
@@ -31,7 +32,22 @@ func NthPrime(n int) int {
 			557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661,
 			673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811}
 		return firstPrimes[n-1]
-	case n >= 24368:
+	case n < 24368:
+		var maxSize = int(math.Round(math.Pow(float64(n), 1.36)))
+		isPrime := make([]bool, maxSize)
+		var primes []int
+		for i := 2; i < maxSize; i++ {
+			if isPrime[i] == true {
+				continue
+			}
+			primes = append(primes, i)
+			for k := i * i; k < maxSize; k += i {
+				isPrime[k] = true
+			}
+
+		}
+		return primes[n-1]
+	default:
 		const maxSize = 300000
 		isPrime := make([]bool, maxSize)
 		var primes []int
@@ -45,20 +61,6 @@ func NthPrime(n int) int {
 			}
 		}
 		return primes[n-1]
-	default:
-		var maxSize = int(math.Round(math.Pow(float64(n), 1.36)))
-		isPrime := make([]bool, maxSize)
-		var primes []int
-		for i := 2; i < maxSize; i++ {
-			if isPrime[i] == true {
-				continue
-			}
-			primes = append(primes, i)
-			for k := i * i; k < maxSize; k += i {
-				isPrime[k] = true
-			}
-			return primes[n-1]
-		}
 	}
 	//
 	//isPrime := make([]bool, maxSize)
@@ -76,8 +78,7 @@ func NthPrime(n int) int {
 	return 0
 }
 
-//
-//func main(){
-//	fmt.Println(NthPrime(81))
-//
-//}
+func main() {
+	fmt.Println(NthPrime(142))
+
+}
