@@ -33,7 +33,7 @@ func NthPrime(n int) int {
 		}
 		return primes[n-1]
 	default:
-		const maxSize = 676000
+		const maxSize = 9547000
 		isPrime := make([]bool, maxSize)
 		var primes []int
 		for i := 2; i < maxSize; i++ {
