@@ -79,8 +79,38 @@ func NthPrime(n int) int {
 
 		}
 		return primes[n-1]
+	case n <= 3950000:
+		var maxSize = int(math.Round(math.Pow(float64(n), 1.2)))
+		isPrime := make([]bool, maxSize)
+		var primes []int
+		for i := 2; i < maxSize; i++ {
+			if isPrime[i] == true {
+				continue
+			}
+			primes = append(primes, i)
+			for k := i * i; k < maxSize; k += i {
+				isPrime[k] = true
+			}
+
+		}
+		return primes[n-1]
 	case n <= 6950000:
 		var maxSize = int(math.Round(math.Pow(float64(n), 1.19)))
+		isPrime := make([]bool, maxSize)
+		var primes []int
+		for i := 2; i < maxSize; i++ {
+			if isPrime[i] == true {
+				continue
+			}
+			primes = append(primes, i)
+			for k := i * i; k < maxSize; k += i {
+				isPrime[k] = true
+			}
+
+		}
+		return primes[n-1]
+	case n <= 8000000:
+		var maxSize = int(math.Round(math.Pow(float64(n), 1.185)))
 		isPrime := make([]bool, maxSize)
 		var primes []int
 		for i := 2; i < maxSize; i++ {
