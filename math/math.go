@@ -1,7 +1,5 @@
 package math
 
-//package main
-
 import "math"
 
 func NthPrime(n int) int {
