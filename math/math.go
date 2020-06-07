@@ -20,7 +20,7 @@ func NthPrime(n int) int {
 
 	default:
 		logarifm := math.Log(float64(n))
-		maxSize := int(float64(n)*(logarifm+math.Log(logarifm))) + 3
+		maxSize := int(float64(n)*(logarifm+math.Log(logarifm))) + 1
 		isPrime := make([]bool, maxSize/2)
 		for i := 3; i < maxSize; i += 2 {
 			if !isPrime[i/2-1] {
