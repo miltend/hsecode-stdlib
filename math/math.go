@@ -1,6 +1,8 @@
 package math
 
-import "math"
+import (
+	"math"
+)
 
 func NthPrime(n int) int {
 	switch {
@@ -16,37 +18,30 @@ func NthPrime(n int) int {
 			673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811}
 		return firstPrimes[n-1]
 
-	case n <= 6000:
-		var maxSize = int(math.Ceil(float64(n) * (math.Log(float64(n)) + math.Log(math.Log(float64(n))))))
-		isPrime := make([]bool, maxSize)
-		var primes []int
-		for i := 2; i < maxSize; i++ {
-			if isPrime[i] == true {
-				continue
-			}
-			primes = append(primes, i)
-			for k := i * i; k < maxSize; k += i {
-				isPrime[k] = true
-			}
-
-		}
-		return primes[n-1]
 	default:
-		//var maxSize = int(math.Round(math.Pow(float64(n), 1.1805)))
-		var maxSize = int(math.Ceil(float64(n) * (math.Log(float64(n)) + math.Log(math.Log(float64(n))))))
+		logarifm := math.Log(float64(n))
+		maxSize := int(float64(n)*(logarifm+math.Log(logarifm))) + 10
 		isPrime := make([]bool, maxSize)
-		var primes []int
-		for i := 2; i < maxSize; i++ {
-			if isPrime[i] == true {
-				continue
+		for i := 3; i < maxSize; i += 2 {
+			if !isPrime[i/2-1] {
+				for j := i * i; j < maxSize; j += i {
+					if j%2 == 0 {
+						continue
+					}
+					isPrime[j/2-1] = true
+				}
 			}
-			primes = append(primes, i)
-			for k := i * i; k < maxSize; k += i {
-				isPrime[k] = true
+
+		}
+		count := 1
+		for i, v := range isPrime {
+			if !v {
+				count++
+			}
+			if n == count {
+				return (i+1)*2 + 1
 			}
 		}
-		return primes[n-1]
 	}
-
 	return 0
 }
