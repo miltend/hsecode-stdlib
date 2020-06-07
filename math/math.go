@@ -1,9 +1,6 @@
 package math
 
-//package main
-
 import (
-	//"fmt"
 	"math"
 )
 
@@ -25,7 +22,7 @@ func NthPrime(n int) int {
 		logarifm := math.Log(float64(n))
 		maxSize := int(float64(n) * (logarifm + math.Log(logarifm)))
 		isPrime := make([]bool, (maxSize+2)/2)
-		for i := 3; i < maxSize; i += 2 {
+		for i := 3; i < int(math.Sqrt(float64(maxSize))); i += 2 {
 			if !isPrime[i/2-1] {
 				for j := i * i; j < maxSize; j += i {
 					if j%2 == 0 {
@@ -48,8 +45,3 @@ func NthPrime(n int) int {
 	}
 	return 0
 }
-
-//
-//func main(){
-//	fmt.Print(NthPrime())
-//}
