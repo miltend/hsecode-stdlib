@@ -1,17 +1,8 @@
 package tree
 
-//package main
-
 import (
-	//"fmt"
 	"sort"
 )
-
-//type Tree struct {
-//	Value int
-//	Left  *Tree
-//	Right *Tree
-//}
 
 func NewBST(elements []int) *Tree {
 
@@ -29,7 +20,6 @@ func NewBST(elements []int) *Tree {
 	}
 
 	sort.Ints(unique)
-	//fmt.Println(unique)
 	return fromSorted(unique)
 }
 
@@ -52,10 +42,6 @@ func fromSorted(unique []int) *Tree {
 		left = unique[:(len(unique)-1)/2]
 		right = unique[(len(unique)-1)/2+1:]
 	}
-	//
-	//fmt.Println(root)
-	//fmt.Println(left)
-	//fmt.Println(right)
 
 	t = Tree{
 		Value: root,
@@ -65,13 +51,3 @@ func fromSorted(unique []int) *Tree {
 
 	return &t
 }
-
-//
-//func main() {
-//
-//	//var a [] int
-//	a:= [] int {1, 3, 4, 5}
-//
-//	tre := NewBST(a)
-//	fmt.Println(tre)
-//}
