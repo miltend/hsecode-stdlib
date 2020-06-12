@@ -27,6 +27,13 @@ func isAntySym(a, b *Tree) bool {
 		return isAS
 	}
 
+	if a.Left != nil && b.Right == nil {
+		return isAS
+	}
+	if a.Right != nil && b.Left == nil {
+		return isAS
+	}
+
 	if a.Right != nil && b.Left != nil {
 		isAS = isAntySym(a.Right, b.Left)
 		if !isAS {
