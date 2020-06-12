@@ -8,6 +8,9 @@ import (
 
 func NewBST(elements []int) *Tree {
 
+	if len(elements) == 0 {
+		panic("empty list")
+	}
 	unique := make([]int, 0)
 	h := make(map[int]struct{})
 
@@ -55,17 +58,8 @@ func fromSorted(unique []int) *Tree {
 //func main() {
 //
 //	var a [] int
-//	a = nil
-//	//root := a[len(a)/2]
-//	//left := a[:len(a)/2]
-//	//right := a[len(a)/2 + 1:]
-//	root := a[(len(a) - 1) / 2]
-//	left := a[:(len(a) - 1) / 2]
-//	right := a[(len(a) - 1) / 2 + 1:]
-//	fmt.Println(root)
-//	fmt.Println(left)
-//	fmt.Println(right)
-//	//if len(a) == 0 {
-//	//	fmt.Println("sadadsdas")
-//	//}
+//	//a:= [] int {1, 2, 3, 4, 5}
+//
+//	tre := NewBST(a)
+//	fmt.Println(tre)
 //}
