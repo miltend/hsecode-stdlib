@@ -9,7 +9,7 @@ import (
 func NewBST(elements []int) *Tree {
 
 	if len(elements) == 0 {
-		panic("empty list")
+		return nil
 	}
 	unique := make([]int, 0)
 	h := make(map[int]struct{})
