@@ -35,8 +35,8 @@ func fromSorted(unique []int) *Tree {
 
 	if len(unique)%2 == 0 {
 		root = unique[len(unique)/2]
-		left = unique[:len(unique)/2]
-		right = unique[len(unique)/2+1:]
+		left = unique[:len(unique)/2-1]
+		right = unique[len(unique)/2:]
 	} else {
 		root = unique[(len(unique)-1)/2]
 		left = unique[:(len(unique)-1)/2]
