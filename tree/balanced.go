@@ -22,7 +22,6 @@ func NewBST(elements []int) *Tree {
 	}
 
 	sort.Ints(unique)
-
 	return fromSorted(unique)
 }
 
@@ -33,7 +32,7 @@ func fromSorted(unique []int) *Tree {
 	var t Tree
 
 	if len(unique) == 0 {
-		return &t
+		return nil
 	}
 
 	if len(unique)%2 == 0 {
@@ -57,8 +56,8 @@ func fromSorted(unique []int) *Tree {
 
 //func main() {
 //
-//	var a [] int
-//	//a:= [] int {1, 2, 3, 4, 5}
+//	//var a [] int
+//	a:= [] int {-2}
 //
 //	tre := NewBST(a)
 //	fmt.Println(tre)
