@@ -25,6 +25,13 @@ func New(capacity int) *Cache {
 	}
 }
 
+func (cache *Cache) purge() {
+	if element := cache.elements.Back(); element != nil {
+		item := cache.elements.Remove(element).(*pair)
+		delete(cache.ht, item.key)
+	}
+}
+
 func (cache *Cache) Get(key int) (int, bool) {
 
 	elem, ok := cache.ht[key]
@@ -36,19 +43,13 @@ func (cache *Cache) Get(key int) (int, bool) {
 
 }
 
-func (cache *Cache) purge() {
-	if element := cache.elements.Back(); element != nil {
-		item := cache.elements.Remove(element).(*pair)
-		delete(cache.ht, item.key)
-	}
-}
-
 func (cache *Cache) Put(key int, value int) {
 
-	if elem, ok := cache.ht[key]; ok == true {
-		cache.elements.MoveToFront(elem)
-		elem.Value.(*pair).value = value
-	}
+	//if elem, ok := cache.ht[key]; ok == true {
+	elem, _ := cache.ht[key]
+	cache.elements.MoveToFront(elem)
+	elem.Value.(*pair).value = value
+	//}
 
 	if cache.elements.Len() == cache.capacity {
 		cache.purge()
@@ -59,7 +60,7 @@ func (cache *Cache) Put(key int, value int) {
 		value: value,
 	}
 
-	elem := cache.elements.PushFront(item)
+	elem = cache.elements.PushFront(item)
 	cache.ht[item.key] = elem
 }
 
