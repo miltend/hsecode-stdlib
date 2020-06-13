@@ -45,13 +45,12 @@ func (cache *Cache) Get(key int) (int, bool) {
 
 func (cache *Cache) Put(key int, value int) {
 
-	//if elem, ok := cache.ht[key]; ok == true {
-	elem, _ := cache.ht[key]
-	cache.elements.MoveToFront(elem)
-	elem.Value.(*pair).value = value
-	//}
+	if elem, ok := cache.ht[key]; ok == true {
+		cache.elements.MoveToFront(elem)
+		elem.Value.(*pair).value = value
+	}
 
-	if cache.elements.Len() == cache.capacity {
+	if cache.elements.Len() == cache.capacity+1 {
 		cache.purge()
 	}
 
@@ -60,12 +59,22 @@ func (cache *Cache) Put(key int, value int) {
 		value: value,
 	}
 
-	elem = cache.elements.PushFront(item)
+	elem := cache.elements.PushFront(item)
 	cache.ht[item.key] = elem
 }
 
 //
-//func main() {
 //
+//func main() {
+//	a:= New(3)
+//	a.Put(1, 1)
+//	a.Put(2, 2)
+//	a.Put(3, 3)
+//	a.Put(1, 10)
+//	a.Put(4, 4)
+//	fmt.Println(a.Get(1))
+//	fmt.Println(a.Get(2))
+//	fmt.Println(a.Get(3))
+//	fmt.Println(a.Get(4))
 //
 //}
