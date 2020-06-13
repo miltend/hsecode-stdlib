@@ -21,7 +21,7 @@ func New(capacity int) *Cache {
 	return &Cache{
 		capacity: capacity,
 		elements: list.New(),
-		ht:       make(map[int]*list.Element),
+		ht:       make(map[int]*list.Element, capacity),
 	}
 }
 
@@ -38,45 +38,48 @@ func (cache *Cache) Get(key int) (int, bool) {
 	if !ok {
 		return 0, false
 	}
-
+	value := elem.Value.(pair).value
 	cache.elements.MoveToFront(elem)
-	return elem.Value.(pair).value, true
+	return value, true
 
 }
 
 func (cache *Cache) Put(key int, value int) {
 
-	//
-	//if elem, ok := cache.ht[key]; ok == true {
-	//	cache.elements.MoveToFront(elem)
-	//	elem.Value.(*pair).value = value
-	//}
+	if elem, ok := cache.ht[key]; ok {
+		cache.elements.MoveToFront(elem)
+		elem.Value = pair{
+			key:   key,
+			value: value,
+		}
+	} else {
+		if cache.elements.Len() == cache.capacity {
+			cache.purge()
+		}
+		item := pair{
+			key:   key,
+			value: value,
+		}
 
-	if cache.elements.Len() == cache.capacity {
-		cache.purge()
+		elem := cache.elements.PushFront(item)
+		cache.ht[key] = elem
 	}
-	item := pair{
-		key:   key,
-		value: value,
-	}
-	elem := cache.elements.PushFront(item)
-	cache.ht[item.key] = elem
 
 }
 
 //func main() {
-//a:= New(3)
+//a:= New(2)
 //a.Put(1, 1)
 //a.Put(2, 2)
 //a.Put(3, 3)
-//a.Put(1, 10)
-//a.Put(4, 4)
+////a.Put(1, 10)
+////a.Put(4, 4)
 //fmt.Println(a.Get(1))
-//fmt.Println(a.Get(2))
-//fmt.Println(a.Get(3))
-//fmt.Println(a.Get(4))
+////fmt.Println(a.Get(2))
+////fmt.Println(a.Get(3))
+////fmt.Println(a.Get(4))
 //
-//	for e := a.elements.Front(); e != nil; e = e.Next(){
-//		fmt.Println(e.Value)
-//	}
+//	//for e := a.elements.Front(); e != nil; e = e.Next(){
+//	//	fmt.Println(e.Value)
+//	//}
 //}
