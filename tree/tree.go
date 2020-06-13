@@ -1,7 +1,7 @@
-package tree
+package main
 
-type Tree struct {
-	Value int
-	Left  *Tree
-	Right *Tree
-}
+//type Tree struct {
+//	Value int
+//	Left  *Tree
+//	Right *Tree
+//}

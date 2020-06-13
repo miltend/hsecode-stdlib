@@ -1,4 +1,4 @@
-package tree
+package main
 
 func (T *Tree) IsSym() bool {
 	if T == nil {

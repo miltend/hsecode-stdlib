@@ -6,5 +6,6 @@ tests:
 #   - matrix
 #   - ndarray
 #   - treebalanced
-  - treesym
+#   - treesym
+  - lru
   #- ...
