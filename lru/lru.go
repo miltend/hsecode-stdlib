@@ -1,7 +1,5 @@
 package lru
 
-//package main
-
 import (
 	"container/list"
 )
@@ -66,20 +64,3 @@ func (cache *Cache) Put(key int, value int) {
 	}
 
 }
-
-//func main() {
-//a:= New(2)
-//a.Put(1, 1)
-//a.Put(2, 2)
-//a.Put(3, 3)
-////a.Put(1, 10)
-////a.Put(4, 4)
-//fmt.Println(a.Get(1))
-////fmt.Println(a.Get(2))
-////fmt.Println(a.Get(3))
-////fmt.Println(a.Get(4))
-//
-//	//for e := a.elements.Front(); e != nil; e = e.Next(){
-//	//	fmt.Println(e.Value)
-//	//}
-//}
