@@ -46,22 +46,18 @@ func (g *Graph) AddEdge(u, v int, edgeData interface{}) {
 
 func (g *Graph) Edge(u, v int) (interface{}, bool) {
 	if g.Type == Directed {
-
 		if val1, ok := g.edges[u]; ok {
 			if val2, ok := val1[v]; ok {
 				return val2, true
-			} else {
-				return nil, false
 			}
+			//else {
+			//	//return nil, false
+			//}
 		}
 	} else if g.Type == Undirected {
-
 		if val1, ok := g.edges[u]; ok {
 			if val2, ok := val1[v]; ok {
 				return val2, true
-			} else {
-				//fmt.Println(v)
-				//return nil, false
 			}
 		}
 		if val1, ok := g.edges[v]; ok {
@@ -108,7 +104,6 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 	}
 }
 
-//
 //type Person struct {
 //	Id   int
 //	Name string
@@ -140,35 +135,26 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 //	//G.AddEdge(1, 1, "self")
 //	G.AddNode(Int{4})
 //	G.AddNode(Int{5})
+//	G.AddNode(Int{6})
+//	G.AddNode(Int{7})
+//	G.AddNode(Int{8})
 //	G.AddEdge(4, 5, nil)
-//
-//
-////G.AddNode(Int{4})
-////G.AddNode(Int{5})
-////G.AddEdge(4, 5, "forward edge")
-////G.AddEdge(5, 4, "backward edge")
-////	G.Nodes(func(v Node){
-////		fmt.Println(v)
-////	})
+//	G.AddEdge(4, 7, nil)
+//	G.AddEdge(6, 8, nil)
+//	G.AddEdge(7, 6, nil)
+//	G.AddEdge(4, 4, nil)
+//	//G.Nodes(func(v Node){
+//	//	fmt.Println(v)
+//	//})
 ////G.Edges(func(start, end Node, e interface{}) {
 ////	fmt.Println(start, end, e)
 ////})
 //	nodes := make([]int, 0)
 //	//fmt.Println(G.Edge(2, 1))
-////	fmt.Println(G.edges[4][1])
-//	G.Neighbours(2, func(v Node, edgeData interface{}) {
+//	//fmt.Println(G.edges[4][1])
+//	G.Neighbours(4, func(v Node, edgeData interface{}) {
 //		fmt.Println(v, edgeData)
 //		nodes = append(nodes, v.ID())
 //	})
-//	//fmt.Println(nodes)
-//	//a:= make(map[int]string)
-//	//a[1] = "suka"
-//	//a[2] = "debil"
-//	//if val, ok := a[2]; ok {
-//	//	fmt.Println(val, ok)
-//	//}
-//
-//
-//
-//
+//	fmt.Println(nodes)
 //}
