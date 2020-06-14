@@ -45,24 +45,29 @@ func (g *Graph) AddEdge(u, v int, edgeData interface{}) {
 }
 
 func (g *Graph) Edge(u, v int) (interface{}, bool) {
-	//if g.lookup[u] == nil || g.lookup[v] == nil {
-	//	panic("node does not exist")
-	//}
 	if g.Type == Directed {
-		if data := g.edges[u][v]; data != nil {
-			return data, true
-		} else {
-			return data, false
+
+		if val1, ok := g.edges[u]; ok {
+			if val2, ok := val1[v]; ok {
+				return val2, true
+			} else {
+				return nil, false
+			}
 		}
 	} else if g.Type == Undirected {
-		data1 := g.edges[u][v]
-		data2 := g.edges[v][u]
-		if data1 != nil {
-			return data1, true
-		} else if data2 != nil {
-			return data2, true
-		} else {
-			return nil, false
+
+		if val1, ok := g.edges[u]; ok {
+			if val2, ok := val1[v]; ok {
+				return val2, true
+			} else {
+				//fmt.Println(v)
+				//return nil, false
+			}
+		}
+		if val1, ok := g.edges[v]; ok {
+			if val2, ok := val1[u]; ok {
+				return val2, true
+			}
 		}
 	}
 	return nil, false
@@ -91,6 +96,9 @@ func (g *Graph) Edges(f func(u, v Node, edgeData interface{})) {
 }
 
 func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
+	if g.nodes[u] == nil {
+		panic("node does not exist")
+	}
 	for i, _ := range g.nodes {
 		if i != u {
 			if data, ok := g.Edge(u, i); ok {
@@ -100,6 +108,7 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 	}
 }
 
+//
 //type Person struct {
 //	Id   int
 //	Name string
@@ -110,7 +119,7 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 //}
 //func (d Int) ID() int { return d.id }
 //func (d Person) ID() int { return d.Id }
-
+//
 //func main() {
 //	G := New(Undirected)
 //	G.AddNode(Person{
@@ -128,15 +137,38 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 //	G.AddEdge(1, 2, "brother and sister")
 //	G.AddEdge(1, 3, "brothers")
 //	G.AddEdge(2, 3, "brother and sist")
-//G.AddNode(Int{4})
-//G.AddNode(Int{5})
-//G.AddEdge(4, 5, "forward edge")
-//G.AddEdge(5, 4, "backward edge")
-//G.Neighbours(3, func(v Node, edgeData interface{}) {
-//	fmt.Println(v, edgeData)
-//})
-
-//G.Edges(func(start, end Node, e interface{}) {
-//	fmt.Println(start, end, e)
-//})
+//	//G.AddEdge(1, 1, "self")
+//	G.AddNode(Int{4})
+//	G.AddNode(Int{5})
+//	G.AddEdge(4, 5, nil)
+//
+//
+////G.AddNode(Int{4})
+////G.AddNode(Int{5})
+////G.AddEdge(4, 5, "forward edge")
+////G.AddEdge(5, 4, "backward edge")
+////	G.Nodes(func(v Node){
+////		fmt.Println(v)
+////	})
+////G.Edges(func(start, end Node, e interface{}) {
+////	fmt.Println(start, end, e)
+////})
+//	nodes := make([]int, 0)
+//	//fmt.Println(G.Edge(2, 1))
+////	fmt.Println(G.edges[4][1])
+//	G.Neighbours(2, func(v Node, edgeData interface{}) {
+//		fmt.Println(v, edgeData)
+//		nodes = append(nodes, v.ID())
+//	})
+//	//fmt.Println(nodes)
+//	//a:= make(map[int]string)
+//	//a[1] = "suka"
+//	//a[2] = "debil"
+//	//if val, ok := a[2]; ok {
+//	//	fmt.Println(val, ok)
+//	//}
+//
+//
+//
+//
 //}
