@@ -8,5 +8,5 @@ tests:
 #   - treebalanced
 #   - treesym
 #   - lru
-  - graph
+#   - graph
   #- ...

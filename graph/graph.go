@@ -1,7 +1,5 @@
 package graph
 
-//package main
-
 type Type int
 type Node interface {
 	ID() int
@@ -99,52 +97,5 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 		if data, ok := g.Edge(u, i); ok {
 			f(g.nodes[i], data)
 		}
-		//if i != u {
-		//	if data, ok := g.Edge(u, i); ok {
-		//		f(g.nodes[i], data)
-		//	}
-		//}
 	}
 }
-
-//type Int struct {
-//	id int
-//}
-//func (d Int) ID() int { return d.id }
-//
-//func main() {
-//	G := New(Directed)
-//	G.AddNode(Int{1})
-//	G.AddNode(Int{2})
-//	G.AddNode(Int{3})
-//	G.AddNode(Int{4})
-//	G.AddNode(Int{5})
-//	G.AddEdge(1, 2, nil)
-//	G.AddEdge(1, 3, nil)
-//	G.AddEdge(3, 4, nil)
-//	G.AddEdge(5, 4, nil)
-//	G.AddEdge(4, 4, nil)
-//
-//	G.Nodes(func(v Node){
-//		G.Neighbours(v.ID(), func(k Node, edgeData interface{}) {
-//			fmt.Println(v.ID())
-//			fmt.Println(k, edgeData)
-//			//nodes = append(nodes, v.ID())
-//		})
-//	})
-//
-////G.Edges(func(start, end Node, e interface{}) {
-////	fmt.Println(start, end, e)
-////})
-////	fmt.Println(G.edges)
-//	//fmt.Println(G.Edge(4, 4))
-//	////nodes := make([]int, 0)
-//	//G.Neighbours(1, func(v Node, edgeData interface{}) {
-//	//	fmt.Println(v, edgeData)
-//	//	//nodes = append(nodes, v.ID())
-//	//})
-////	fmt.Println(nodes)
-//
-//
-//	//fmt.Println(G.edges[4])
-//}
