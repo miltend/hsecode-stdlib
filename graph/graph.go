@@ -96,65 +96,55 @@ func (g *Graph) Neighbours(u int, f func(v Node, edgeData interface{})) {
 		panic("node does not exist")
 	}
 	for i, _ := range g.nodes {
-		if i != u {
-			if data, ok := g.Edge(u, i); ok {
-				f(g.nodes[i], data)
-			}
+		if data, ok := g.Edge(u, i); ok {
+			f(g.nodes[i], data)
 		}
+		//if i != u {
+		//	if data, ok := g.Edge(u, i); ok {
+		//		f(g.nodes[i], data)
+		//	}
+		//}
 	}
 }
 
-//type Person struct {
-//	Id   int
-//	Name string
-//}
-//
 //type Int struct {
 //	id int
 //}
 //func (d Int) ID() int { return d.id }
-//func (d Person) ID() int { return d.Id }
 //
 //func main() {
-//	G := New(Undirected)
-//	G.AddNode(Person{
-//		Id:   1,
-//		Name: "Fred Weasley",
-//	})
-//	G.AddNode(Person{
-//		Id:   2,
-//		Name: "Ginny Weasley",
-//	})
-//	G.AddNode(Person{
-//		Id:   3,
-//		Name: "Persi Weasley",
-//	})
-//	G.AddEdge(1, 2, "brother and sister")
-//	G.AddEdge(1, 3, "brothers")
-//	G.AddEdge(2, 3, "brother and sist")
-//	//G.AddEdge(1, 1, "self")
+//	G := New(Directed)
+//	G.AddNode(Int{1})
+//	G.AddNode(Int{2})
+//	G.AddNode(Int{3})
 //	G.AddNode(Int{4})
 //	G.AddNode(Int{5})
-//	G.AddNode(Int{6})
-//	G.AddNode(Int{7})
-//	G.AddNode(Int{8})
-//	G.AddEdge(4, 5, nil)
-//	G.AddEdge(4, 7, nil)
-//	G.AddEdge(6, 8, nil)
-//	G.AddEdge(7, 6, nil)
+//	G.AddEdge(1, 2, nil)
+//	G.AddEdge(1, 3, nil)
+//	G.AddEdge(3, 4, nil)
+//	G.AddEdge(5, 4, nil)
 //	G.AddEdge(4, 4, nil)
-//	//G.Nodes(func(v Node){
-//	//	fmt.Println(v)
-//	//})
+//
+//	G.Nodes(func(v Node){
+//		G.Neighbours(v.ID(), func(k Node, edgeData interface{}) {
+//			fmt.Println(v.ID())
+//			fmt.Println(k, edgeData)
+//			//nodes = append(nodes, v.ID())
+//		})
+//	})
+//
 ////G.Edges(func(start, end Node, e interface{}) {
 ////	fmt.Println(start, end, e)
 ////})
-//	nodes := make([]int, 0)
-//	//fmt.Println(G.Edge(2, 1))
-//	//fmt.Println(G.edges[4][1])
-//	G.Neighbours(4, func(v Node, edgeData interface{}) {
-//		fmt.Println(v, edgeData)
-//		nodes = append(nodes, v.ID())
-//	})
-//	fmt.Println(nodes)
+////	fmt.Println(G.edges)
+//	//fmt.Println(G.Edge(4, 4))
+//	////nodes := make([]int, 0)
+//	//G.Neighbours(1, func(v Node, edgeData interface{}) {
+//	//	fmt.Println(v, edgeData)
+//	//	//nodes = append(nodes, v.ID())
+//	//})
+////	fmt.Println(nodes)
+//
+//
+//	//fmt.Println(G.edges[4])
 //}
